@@ -28,7 +28,7 @@ jobs:
     - name: get hash
       run: curl https://raw.githubusercontent.com/Hexxeh/rpi-firmware/master/git_hash > git_hash
     - name: git update
-      run: git submodule update --init --recursive 
+      run: git submodule update --init --recursive --depth 10
     - name: git checkout
       run: cd linux && git checkout $(wget -q -O - "https://api.github.com/repos/raspberrypi/linux" | jq -r '.default_branch')
     - name: git pull
