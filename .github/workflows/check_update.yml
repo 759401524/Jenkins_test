@@ -22,17 +22,17 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v2
-    - name: apt update
-      run: sudo apt update && sudo apt install wget jq -y
+#     - name: apt update
+#       run: sudo apt update && sudo apt install wget jq -y
       
     - name: get hash
       run: curl https://raw.githubusercontent.com/Hexxeh/rpi-firmware/master/git_hash > git_hash
     - name: git update
-      run: git submodule update --init --recursive --depth 5
+      run: git submodule update --init --recursive 
     - name: git checkout
       run: cd linux && git checkout $(wget -q -O - "https://api.github.com/repos/raspberrypi/linux" | jq -r '.default_branch')
     - name: git pull
-      run: cd linux && git pull  --merge
+      run: cd linux && git pull
     - name: git checkout
       run: cd linux && git checkout $(cat ../git_hash)
     
