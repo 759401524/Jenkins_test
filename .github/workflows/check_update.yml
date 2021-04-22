@@ -27,8 +27,12 @@ jobs:
       run: curl https://raw.githubusercontent.com/Hexxeh/rpi-firmware/master/git_hash > git_hash
     - name: git update
       run: git submodule update --init --recursive --depth 5
+    - name: git submodule set-branch
+      run: git submodule set-branch --default
     - name: git checkout
-      run: cd linux && git submodule update --remote  --merge  && git checkout $(cat ../git_hash)
+      run: cd linux && git submodule update --remote  --merge
+    - name: git checkout
+      run: cd linux && git checkout $(cat ../git_hash)
     
     - name: Commit changes
       uses: EndBug/add-and-commit@v7
