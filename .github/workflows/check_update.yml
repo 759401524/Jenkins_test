@@ -28,7 +28,7 @@ jobs:
     - name: git update
       run: git submodule update --init --recursive --depth 5
     - name: git submodule set-branch
-      run: git submodule set-branch -d .
+      run: git submodule set-branch -d ./
     - name: git checkout
       run: cd linux && git submodule update --remote  --merge
     - name: git checkout
